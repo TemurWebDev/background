@@ -28,16 +28,3 @@ async def video_handler(message: Message):
     await bot.send_document(chat_id=message.from_user.id,document=photo_file, caption="foto")
 
 
-
-@dp.message_handler(Command("rasm"))
-async def send_book(message: types.Message):
-    #photo_id = "AgACAgUAAxkBAAIHUWErOgOL_YUiW1bawxdvEJM8mUd9AAK4rDEbXltZVRPBqDf39UdmAQADAgADeQADIAQ"
-    photo_file = InputFile(path_or_bytesio="downloads/photos/file_10.jpg")
-    print(photo_file)
-    await message.reply_photo(
-        photo_file, caption="Dasturlash asoslari kitobi. \n Narxi: 50000 so'm"
-    )
-    # await message.answer_photo(
-    #     photo_id, caption="Dasturlash asoslari kitobi. \n Narxi: 50000 so'm"
-    # )
-    #
