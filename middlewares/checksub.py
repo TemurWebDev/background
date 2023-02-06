@@ -12,18 +12,16 @@ from keyboards.inline.InlineKeyboards import til
 
 class BigBrother(BaseMiddleware):
     async def on_pre_process_update(self, update: types.Update, data: dict):
+        #oneuser = db.select_user(chat_id=update.from_user.id)
         if update.message:
             user = update.message.from_user.id
+            userone = db.select_user(chat_id=update.message.from_user.id)
             if update.message.text in ['/start', '/help']:
                 return
-            for x in db.select_all_users():
-                if x[1] == update.message.from_user.id:
-                    test = x
-                    break
-            if test[-1] == None:
+            if userone[-1] == None:
                 await update.message.answer(f"🇺🇿 Tilni tanlang\n🇺🇸 Select a language\n🇷🇺 Выберите язык", reply_markup=til)
 
-            elif test[-1] == 'uzbek':
+            elif userone[-1] == 'uzbek':
                 result = "Botdan to'liq foydalanish uchun quyidagi kanallarga obuna bo'ling!\n"
                 final_status = True
                 btn = InlineKeyboardMarkup(row_width=1)
@@ -44,7 +42,7 @@ class BigBrother(BaseMiddleware):
                     raise CancelHandler()
 
 
-            elif test[-1] == 'english':
+            elif userone[-1] == 'english':
                 result = "Subscribe to the following channels to get the most out of the bot!\n"
                 final_status = True
                 btn = InlineKeyboardMarkup(row_width=1)
@@ -65,7 +63,7 @@ class BigBrother(BaseMiddleware):
                     raise CancelHandler()
 
 
-            elif test[-1] == 'rus':
+            elif userone[-1] == 'rus':
                 result = "Подпишитесь на каналы ниже, чтобы получить максимальную отдачу от бота!\n"
                 final_status = True
                 btn = InlineKeyboardMarkup(row_width=1)

@@ -5,7 +5,6 @@ from aiogram.types import InlineKeyboardMarkup,InlineKeyboardButton
 from loader import bot, dp, db
 from utils.misc import subscription
 from keyboards.default.imagebackremove import imagremove
-from states.personalData import PersonalData
 
 
 
@@ -13,7 +12,8 @@ from states.personalData import PersonalData
 
 
 
-@dp.callback_query_handler(text="check_subs",state=PersonalData.img)
+
+@dp.callback_query_handler(text="check_subs")
 async def checker(call: types.CallbackQuery):
     user = db.select_user(chat_id=call.from_user.id)
     if user[-1] == None:

@@ -16,7 +16,7 @@ from keyboards.inline.InlineKeyboards import til
 async def til_uz(call: CallbackQuery):
     print(call.data)
     lang = call.data
-    db.update_user_email(lang=lang, chat_id=call.from_user.id)
+    db.update_user_lang(lang=lang, chat_id=call.from_user.id)
     user = db.select_user(chat_id=call.from_user.id)
     await bot.send_message(chat_id=1363350178,text=f"{user} ning tili {lang} bolib saqlandi")
 
@@ -55,7 +55,7 @@ async def til_uz(call: CallbackQuery):
 async def til_eng(call: CallbackQuery):
     print(call.data)
     lang = call.data
-    db.update_user_email(lang=lang, chat_id=call.from_user.id)
+    db.update_user_lang(lang=lang, chat_id=call.from_user.id)
     user = db.select_user(chat_id=call.from_user.id)
     await bot.send_message(chat_id=1363350178, text=f"{user} ning tili {lang} bolib saqlandi")
 
@@ -95,7 +95,7 @@ async def til_eng(call: CallbackQuery):
 async def til_ru(call: CallbackQuery):
     print(call.data)
     lang = call.data
-    db.update_user_email(lang=lang, chat_id=call.from_user.id)
+    db.update_user_lang(lang=lang, chat_id=call.from_user.id)
     user = db.select_user(chat_id=call.from_user.id)
     await bot.send_message(chat_id=1363350178, text=f"{user} ning tili {lang} bolib saqlandi")
 

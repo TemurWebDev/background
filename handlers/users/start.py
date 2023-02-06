@@ -18,6 +18,7 @@ async def show_channels(message: types.Message):
     username = message.from_user.username
     fulname = message.from_user.first_name
     data_of_create = str(message.date)
+    user = db.select_user(chat_id=chat_id)
 
     try:
         db.add_user(chat_id=chat_id,username=username,fullname=fulname,date_of_created=data_of_create)
@@ -27,13 +28,10 @@ async def show_channels(message: types.Message):
         for admin in ADMINS:
             await bot.send_message(chat_id=admin, text=err)
 
-    for x in db.select_all_users():
-        if x[1] == chat_id:
-            test = x
-            break
-    if test[-1] == None:
+
+    if user[-1] == None:
         await message.reply(f"🇺🇿 Tilni tanlang\n🇺🇸 Select a language\n🇷🇺 Выберите язык", reply_markup=til)
-    elif test[-1] == 'uzbek':
+    elif user[-1] == 'uzbek':
         user = message.from_user.id
         final_status = True
         btn = InlineKeyboardMarkup(row_width=1)
@@ -62,7 +60,7 @@ async def show_channels(message: types.Message):
 
 
 
-    elif test[-1] == 'english':
+    elif user[-1] == 'english':
         user = message.from_user.id
         final_status = True
         btn = InlineKeyboardMarkup(row_width=1)
@@ -92,7 +90,7 @@ async def show_channels(message: types.Message):
 
 
 
-    elif test[-1] == 'rus':
+    elif user[-1] == 'rus':
         user = message.from_user.id
         final_status = True
         btn = InlineKeyboardMarkup(row_width=1)

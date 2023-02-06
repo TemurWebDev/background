@@ -58,7 +58,7 @@ class Database:
     def count_users(self):
         return self.execute("SELECT COUNT(*) FROM users;", fetchone=True)
 
-    def update_user_email(self, lang, chat_id):
+    def update_user_lang(self, lang, chat_id):
         # SQL_EXAMPLE = "UPDATE Users SET email=mail@gmail.com WHERE id=12345"
 
         sql = f"""
